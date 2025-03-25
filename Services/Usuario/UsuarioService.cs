@@ -147,6 +147,36 @@ namespace ApiDanielEstudo.Services.Usuario
             }
         }
 
+        public async Task<ResponseModel<UsuarioModel>> RemoverUsuario(int id)
+        {
+            ResponseModel<UsuarioModel> response = new ResponseModel<UsuarioModel>();
+
+            try
+            {
+                var usuario = await _context.Usuarios.FindAsync(id);
+
+                if(usuario == null)
+                {
+                    response.Mensagem = "Usuário Não Localizado!";
+                    return response;
+                }
+
+                response.Dados = usuario;
+                response.Mensagem = "Usuário Deletado com sucesso!";
+
+                _context.Remove(usuario);
+                await _context.SaveChangesAsync();
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+        }
+
         private bool VerificaSeExisteEmailUsuarioRepetidos(UsuarioCriacaoDto usuarioCriacaoDto)
         {
             var usuario = _context.Usuarios.FirstOrDefault(item => item.Email == usuarioCriacaoDto.Email ||
