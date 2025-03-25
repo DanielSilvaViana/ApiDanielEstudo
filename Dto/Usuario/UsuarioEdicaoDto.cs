@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiDanielEstudo.Dto
+namespace ApiDanielEstudo.Dto.Usuario
 {
     public class UsuarioEdicaoDto
     {
@@ -16,6 +16,6 @@ namespace ApiDanielEstudo.Dto
         public string Email { get; set; } = string.Empty;
         public DateTime DataCriacao { get; set; } = DateTime.Now;
         public DateTime DataAlteracao { get; set; } = DateTime.Now;
-       
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ApiDanielEstudo.Data;
-using ApiDanielEstudo.Dto;
+using ApiDanielEstudo.Dto.Login;
+using ApiDanielEstudo.Dto.Usuario;
 using ApiDanielEstudo.Exceptions;
 using ApiDanielEstudo.Model;
 using ApiDanielEstudo.Services.Senha;
@@ -96,6 +97,39 @@ namespace ApiDanielEstudo.Services.Usuario
                 response.Dados = usuarios;
                 response.Mensagem = "Usuários Localizados!";
                 return response;
+
+            }
+            catch (Exception ex)
+            {
+
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<UsuarioModel>> Login(LoginDto loginDto)
+        {
+            ResponseModel<UsuarioModel> response = new ResponseModel<UsuarioModel>();
+
+            try
+            {
+
+                var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == loginDto.Email);
+
+                if (usuario == null)
+                {
+                    response.Mensagem = "Usuário não localizado!";
+                    response.Status = false;
+                    return response;
+                }
+
+                if(!_senhaInterface.VerificaSenhaHash(loginDto.Senha,usuario.SenhaHash,usuario.SenhaSalt))
+                {
+                    response.Mensagem = "Credenciais Inválidas!";
+                    response.Status = false;
+                    return response;
+                }
 
             }
             catch (Exception ex)

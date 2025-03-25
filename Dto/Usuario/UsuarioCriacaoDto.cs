@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiDanielEstudo.Dto
+namespace ApiDanielEstudo.Dto.Usuario
 {
     public class UsuarioCriacaoDto
     {
@@ -13,11 +13,11 @@ namespace ApiDanielEstudo.Dto
         [Required(ErrorMessage = "Digite o Email")]
         public string Email { get; set; } = string.Empty;
         public DateTime DataCriacao { get; set; } = DateTime.Now;
-        public DateTime DataAlteracao { get; set; } =  DateTime.Now;
+        public DateTime DataAlteracao { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "Digite a Senha"),MaxLength(8)]
+        [Required(ErrorMessage = "Digite a Senha"), MaxLength(8)]
         public string Senha { get; set; }
-        [Required(ErrorMessage = "Digite a Confirmação de Senha"), Compare("Senha",ErrorMessage = "As senhas não são iguais")]
+        [Required(ErrorMessage = "Digite a Confirmação de Senha"), Compare("Senha", ErrorMessage = "As senhas não são iguais")]
         public string ConfirmaSenha { get; set; }
     }
 }

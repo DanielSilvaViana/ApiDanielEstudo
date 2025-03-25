@@ -1,4 +1,4 @@
-﻿using ApiDanielEstudo.Dto;
+﻿using ApiDanielEstudo.Dto.Usuario;
 using ApiDanielEstudo.Services.Usuario;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

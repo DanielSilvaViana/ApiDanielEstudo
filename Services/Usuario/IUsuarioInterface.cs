@@ -1,4 +1,6 @@
 ﻿using ApiDanielEstudo.Dto;
+using ApiDanielEstudo.Dto.Login;
+using ApiDanielEstudo.Dto.Usuario;
 using ApiDanielEstudo.Model;
 
 namespace ApiDanielEstudo.Services.Usuario
@@ -10,6 +12,7 @@ namespace ApiDanielEstudo.Services.Usuario
         Task<ResponseModel<UsuarioModel>> BuscarUsuarioPorId(int id);
         Task<ResponseModel<UsuarioModel>> EditarUsuario(UsuarioEdicaoDto usuarioEdicaoDto);
         Task<ResponseModel<UsuarioModel>> RemoverUsuario(int id);
+        Task<ResponseModel<UsuarioModel>> Login(LoginDto loginDto);
 
     }
 }

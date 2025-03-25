@@ -1,4 +1,4 @@
-﻿using ApiDanielEstudo.Dto;
+﻿using ApiDanielEstudo.Dto.Usuario;
 using ApiDanielEstudo.Exceptions;
 using ApiDanielEstudo.Services.Usuario;
 using Microsoft.AspNetCore.Http;
