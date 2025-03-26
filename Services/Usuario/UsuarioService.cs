@@ -131,6 +131,17 @@ namespace ApiDanielEstudo.Services.Usuario
                     return response;
                 }
 
+                var token = _senhaInterface.CriarToken(usuario);
+                usuario.Token = token;
+
+                _context.Update(usuario);
+                await _context.SaveChangesAsync();
+
+                response.Dados = usuario;
+                response.Mensagem = "Usuário Logado com Sucesso!";
+
+                return response;
+
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
-﻿using ApiDanielEstudo.Dto.Usuario;
+﻿using ApiDanielEstudo.Dto.Login;
+using ApiDanielEstudo.Dto.Usuario;
 using ApiDanielEstudo.Exceptions;
 using ApiDanielEstudo.Services.Usuario;
 using Microsoft.AspNetCore.Http;
@@ -23,13 +24,25 @@ namespace ApiDanielEstudo.Controllers
             try
             {
                 var usuario = await _usuarioInterface.RegistrarUsuario(usuarioCriacaoDto);
-                return CreatedAtAction("",usuario);
+                return Ok(usuario);
+
+                //return CreatedAtAction("", usuario);
             }
             catch (EmailRegisterException ex)
             {
                 return BadRequest(ex.Message);
                 throw;
-            }            
+            }
+        }
+
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+
+            var usuario = await _usuarioInterface.Login(loginDto);
+            return Ok(usuario);
+            //return CreatedAtAction("", usuario);
         }
     }
 }
