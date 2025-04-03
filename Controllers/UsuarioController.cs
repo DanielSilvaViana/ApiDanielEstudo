@@ -1,5 +1,6 @@
 ﻿using ApiDanielEstudo.Dto.Usuario;
 using ApiDanielEstudo.Services.Usuario;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,8 @@ namespace ApiDanielEstudo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioInterface _usuarioInterface;
@@ -49,3 +52,4 @@ namespace ApiDanielEstudo.Controllers
 
     }
 }
+7
