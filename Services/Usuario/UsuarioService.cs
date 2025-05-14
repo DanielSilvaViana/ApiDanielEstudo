@@ -4,6 +4,7 @@ using ApiDanielEstudo.Dto.Usuario;
 using ApiDanielEstudo.Exceptions;
 using ApiDanielEstudo.Model;
 using ApiDanielEstudo.Services.Senha;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiDanielEstudo.Services.Usuario

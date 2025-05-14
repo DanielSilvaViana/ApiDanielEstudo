@@ -3,22 +3,19 @@ using ApiDanielEstudo.Services.Senha;
 using ApiDanielEstudo.Services.Usuario;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddScoped<IUsuarioInterface, UsuarioService>();
 builder.Services.AddScoped<ISenhaInterface, SenhaService>();
-
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -27,21 +24,22 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddSwaggerGen(options =>
     {
-        options.AddSecurityDefinition("ouath2", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+        options.AddSecurityDefinition("oauth2", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
         {
-            Description = "Standart Authorization header using the Bearer scheme (\"bearer {token}\")",
-            In = ParameterLocation.Header,
+            Description = "Standar Authorization header using the Bearer scheme (\"bearer {token}\")",
+            In = Microsoft.OpenApi.Models.ParameterLocation.Header,
             Name = "Authorization",
-            Type = SecuritySchemeType.ApiKey
+            Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey
         });
+
 
         options.OperationFilter<SecurityRequirementsOperationFilter>();
 
-
     });
 
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
+{ 
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,

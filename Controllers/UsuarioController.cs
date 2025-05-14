@@ -19,8 +19,7 @@ namespace ApiDanielEstudo.Controllers
             _usuarioInterface = usuarioInterface;
         }
 
-        [HttpGet]
-
+        [HttpGet("ListarUsuarios")]
         public async Task<IActionResult>ListarUsuarios()
         {
             var usuarios = await _usuarioInterface.ListarUsuarios();
@@ -52,4 +51,3 @@ namespace ApiDanielEstudo.Controllers
 
     }
 }
-7
